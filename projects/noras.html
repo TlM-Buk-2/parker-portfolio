@@ -112,6 +112,21 @@
             opacity: 0.95;
         }
 
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
         main {
             max-width: 1100px;
             margin: 0 auto;
@@ -264,6 +279,12 @@
         <div class="project-hero-content">
             <p class="eyebrow">Active Project</p>
             <h1>NORAS Leg Lab - <span class="ongoing">Ongoing</span></h1>
+            <div class="tags">
+                <span class="tag">Raspberry Pi 5</span>
+                <span class="tag">PID Control</span>
+                <span class="tag">Mean Well Power Supply</span>
+                <span class="tag">Teleoperation</span>
+            </div>
         </div>
     </header>
 
@@ -275,9 +296,9 @@
                 <p>
                     The goal of this project is to develop a robotic leg test platform to perform
                     experiments on various actuation and control systems. This project is entirely
-                    self funded and independent. I had the ideas back in August of 2025 and have
+                    self-funded and independent. I had the ideas back in August of 2025 and have
                     recently had the funds to start developing it. Additionally, I have had a lot
-                    of success using the AI Cursor to help me develop programs for projects either
+                    of success using Cursor to help me develop programs for projects either
                     faster or better than my skill level allows, but so far in this project I have
                     been doing everything on my own to push myself to get more comfortable with
                     programming.
@@ -299,7 +320,7 @@
                     </li>
                     <li>
                         Take my experience with computer vision, specifically MediaPipe, and see
-                        how well I can create teleoperation based on my own legs motion caught on
+                        how well I can create teleoperation based on my own legs' motion caught on
                         camera
                     </li>
                     <li>
@@ -315,15 +336,6 @@
                         </ul>
                     </li>
                 </ol>
-
-                <h3>Notes</h3>
-                <p>
-                    I haven't done any theoretical analysis because this isn't academically,
-                    professionally, or monetarily motivated, and I want to see how the results
-                    come out. I plan to create those to compare the findings to, at least the
-                    first experimental goal, but this is largely a learning exercise for me
-                    because it is something I want to do.
-                </p>
             </div>
         </section>
 
@@ -366,7 +378,7 @@
                         Your browser does not support the video tag.
                     </video>
                     <div class="media-caption">
-                        <strong>Setting up both second motor and new Mean Well power supply</strong>
+                        <strong>Setting up both the second motor and new Mean Well power supply</strong>
                     </div>
                 </div>
 
@@ -377,7 +389,7 @@
                     </video>
                     <div class="media-caption">
                         <strong>Parker FEA</strong>
-                        This is the planned testing platform for the leg. The intent is to guide it on a planar trajectory and allow the leg to skate through the swing phase of the walking gait. I was unhappy with the fixed casters in my local hardware stores. I figured I would likely have to modify whatever I bought to attach to the aluminum extrusion anyway, so I made my own for cheap and wanted to make sure they could handle some moderately dynamic loads. I suspended ~35 lbs to the test platform and gave it a shove.
+                        This is the planned testing platform for the leg. The intent is to guide it on a planar trajectory and allow the leg to skate through the swing phase of the walking gait. I was unhappy with the fixed casters in my local hardware stores. I figured I would likely have to modify whatever I bought to attach to the aluminum extrusion anyway, so I made my own for cheap and wanted to make sure they could handle some moderately dynamic loads. I suspended ~35 lbs from the test platform and gave it a shove.
                     </div>
                 </div>
 
@@ -388,7 +400,7 @@
                     </video>
                     <div class="media-caption">
                         <strong>Aluminum Extrusion Linkages</strong>
-                        Getting a sense of the new aluminum extrusion based leg design after I was unhappy with how difficult it was to locate everything correctly on the PVC version. Additionally, hand testing the planned belt drive system.
+                        Getting a sense of the new aluminum-extrusion-based leg design after I was unhappy with how difficult it was to locate everything correctly on the PVC version. Additionally, hand testing the planned belt drive system.
                     </div>
                 </div>
 
@@ -411,7 +423,7 @@
                     <img src="./noras/media-9.jpg" alt="Mock Leg Design">
                     <div class="media-caption">
                         <strong>Mock Leg Design</strong>
-                        I threw together this leg to get a sense of the general design direction I wanted to go with for the actual leg. The gear drive here was simply to A) Test 3D printed gears, and B) make it move. I was initially optimistic about the PVC linkages, but found accurately locating the motor to the knee joint requires an excessive amount of 3D printing. I was incredibly happy with my hinge design though. I managed to get very smooth low friction planar rotation using some cheap bearings off of Amazon I press fit in.
+                        I threw together this leg to get a sense of the general design direction I wanted to go with for the actual leg. The gear drive here was simply to A) Test 3D printed gears, and B) make it move. I was initially optimistic about the PVC linkages, but found accurately locating the motor to the knee joint requires an excessive amount of 3D printing. I was incredibly happy with my hinge design though. I managed to get very smooth low-friction planar rotation using some cheap bearings off of Amazon I press fit in.
                     </div>
                 </div>
 
