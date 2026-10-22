@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-white);
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #050505;
+            background-image:
+                linear-gradient(to top, rgba(15, 23, 42, 0.35), rgba(15, 23, 42, 0.15)),
+                url('./images/hero.jpg');
+            background-position: center bottom;
+            background-size: contain;
+            background-repeat: no-repeat;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 60px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-content .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-content .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--text-dark);
+        }
+
+        .skills-note {
+            max-width: 46rem;
+            margin: -1.5rem auto 2.5rem;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--bg-light);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            border-radius: 50%;
+            background: var(--primary-color); /* filled blue circle underneath */
+            border: 5px solid #8f00d4; /* vivid, deeper purple */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 78%;
+            height: auto;
+            display: block;
+            position: relative;
+            z-index: 1;
+            /* keep photo rectangular on top of the blue circle */
+        }
+
+        /* blue ring on top to round out the rectangular photo */
+        .about-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 6px solid var(--primary-color);
+            box-shadow: inset 0 0 0 2px var(--primary-color);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-card ul {
+            list-style: none;
+            color: var(--text-light);
+        }
+
+        .skill-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.1rem;
+            position: relative;
+        }
+
+        .skill-card li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--bg-light);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 60%;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content h3 .ongoing {
+            color: #16a34a;
+        }
+
+        .project-content p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background: var(--bg-light);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+        }
+
+        .project-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .project-card:hover .project-link {
+            text-decoration: underline;
+        }
+
+        /* Experience Section */
+        .experience-item {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-item h3 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item.highlight {
+            border-left-width: 6px;
+            border-left-color: #8f00d4;
+            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+        }
+
+        .experience-item .badge {
+            display: inline-block;
+            margin-top: 0.35rem;
+            margin-bottom: 0.75rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 999px;
+            background: var(--primary-color);
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .experience-item .company {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item .date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-item li {
+            padding: 0.5rem 0;
+            color: var(--text-light);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .experience-item li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        /* Library Section */
+        .library {
+            background: var(--bg-light);
+        }
+
+        .library-note {
+            max-width: 46rem;
+            margin: -1.5rem auto 2.5rem;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .library-list {
+            max-width: 1000px;
+            margin: 0 auto;
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+
+        .library-list li {
+            background: var(--bg-white);
+            padding: 1.35rem 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .library-list li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .library-list .book-title {
+            color: var(--text-dark);
+            font-weight: 600;
+            line-height: 1.35;
+        }
+
+        .library-list .book-author {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--bg-light);
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-2px);
+            background: var(--secondary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .library-list {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Parker Gilfour</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#library">Library</a></li>
+                <li><a href="#contact">Find me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Hi, I'm Parker</h1>
+            <a href="#projects" class="cta-button">View My Work</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="./images/profile-photo.jpg" alt="Parker Gilfour">
+            </div>
+            <div class="about-text">
+                <p>
+                    I am a mechanical engineering student from New Orleans finishing my last year at LSU.
+                    I started working on automation projects at fourteen competing in First Robotics.
+                    As I am finishing my minor in robotics, I have found myself particularly interested in
+                    control systems, actuation, and modeling.
+                </p>
+                <p style="margin-top: 1rem;">
+                    I have worked on several solo and team-based engineering projects coupled with some
+                    research and development work with two startups. Hopefully this portfolio can give you
+                    some insight into those experiences and the skills I have developed along the way.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <p class="skills-note">
+            Please ask me about my experience with these.
+        </p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Design</h3>
+                <ul>
+                    <li>3-D Modeling (Fusion 360, SolidWorks, Autodesk Inventor)</li>
+                    <li>Electrical and Mechanical Design</li>
+                    <li>Rapid Prototyping</li>
+                    <li>Mechanics &amp; Kinematic Modeling</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Manufacturing &amp; Assembly</h3>
+                <ul>
+                    <li>Manual &amp; CNC Milling and Lathing</li>
+                    <li>Metal Fabrication</li>
+                    <li>Additive Manufacturing</li>
+                    <li>Woodworking</li>
+                    <li>Electrical and Mechanical Assembly</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Robotics &amp; Controls</h3>
+                <ul>
+                    <li>Control Systems &amp; PID Control</li>
+                    <li>Sensor Integration</li>
+                    <li>Instrumentation &amp; Data Acquisition</li>
+                    <li>Computer Vision &amp; Machine Learning</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Programming</h3>
+                <ul>
+                    <li>Python</li>
+                    <li>MATLAB</li>
+                    <li>C/C++</li>
+                    <li>AI-Assisted Engineering Development</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <a href="./projects/noras.html" style="text-decoration: none; color: inherit; display: block;">
+                    <div class="project-image">
+                        <img src="./images/noras-leg-lab.jpg" alt="NORAS Leg Lab">
+                    </div>
+                    <div class="project-content">
+                        <h3>NORAS Leg Lab - <span class="ongoing">Ongoing</span></h3>
+                        <span class="project-link">View Project →</span>
+                    </div>
+                </a>
+            </div>
+            <div class="project-card">
+                <a href="./projects/cane.html" style="text-decoration: none; color: inherit; display: block;">
+                    <div class="project-image">
+                        <img src="./images/cane-project.jpg" alt="Computer Vision & Lidar Enhanced Cane">
+                    </div>
+                    <div class="project-content">
+                        <h3>Computer Vision & Lidar Enhanced Cane for the Visually Impaired</h3>
+                        <span class="project-link">View Project →</span>
+                    </div>
+                </a>
+            </div>
+            <div class="project-card">
+                <a href="./projects/submersible.html" style="text-decoration: none; color: inherit; display: block;">
+                    <div class="project-image">
+                        <img src="./images/submersible-project.jpg" alt="Swamp/Marshland Robotic Submersible">
+                    </div>
+                    <div class="project-content">
+                        <h3>Swamp/Marshland Robotic Submersible</h3>
+                        <span class="project-link">View Project →</span>
+                    </div>
+                </a>
+            </div>
+            <div class="project-card">
+                <a href="./projects/robotics.html" style="text-decoration: none; color: inherit; display: block;">
+                    <div class="project-image">
+                        <img src="./images/robotics-project.jpg" alt="Middle and High School Robotics">
+                    </div>
+                    <div class="project-content">
+                        <h3>Middle and High School Robotics</h3>
+                        <span class="project-link">View Project →</span>
+                    </div>
+                </a>
+            </div>
+            <div class="project-card">
+                <a href="./projects/modeling.html" style="text-decoration: none; color: inherit; display: block;">
+                    <div class="project-image">
+                        <img src="./images/3d-modeling-project.png" alt="General 3D Modeling and Design Work">
+                    </div>
+                    <div class="project-content">
+                        <h3>General 3D Modeling and Design Work</h3>
+                        <span class="project-link">View Project →</span>
+                    </div>
+                </a>
+            </div>
+            <div class="project-card">
+                <a href="./projects/ongoing.html" style="text-decoration: none; color: inherit; display: block;">
+                    <div class="project-image">
+                        <img src="./images/personal-projects.jpg" alt="Ongoing Personal Projects">
+                    </div>
+                    <div class="project-content">
+                        <h3>Ongoing Personal Projects</h3>
+                        <span class="project-link">View Project →</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2>Education</h2>
+        <div class="experience-item">
+            <h3>Mechanical Engineering, Robotics Minor</h3>
+            <div class="company">Louisiana State University, Baton Rouge, LA</div>
+            <div class="date">August 2022 - Present (Graduating May 2027)</div>
+            <ul>
+                <li>Senior majoring in mechanical engineering, and minoring in robotics</li>
+                <li>Relevant courses: Introduction to Robotics, Assistive Robotics, Sensors and Actuators</li>
+            </ul>
+        </div>
+        <div class="experience-item">
+            <h3>High School</h3>
+            <div class="company">Willow School, New Orleans, LA</div>
+            <div class="date">August 2018 - May 2022</div>
+            <ul>
+                <li>Relevant courses: High School PLTW Engineering Program, Advanced Placement Physics, Certificate of Artistry Stagecraft</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <div class="experience-item highlight">
+            <h3>Fundamentals of Engineering (FE) Exam — Mechanical</h3>
+            <div class="company">NCEES</div>
+            <div class="date">Passed July 25, 2026</div>
+            <span class="badge">Credential</span>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="experience-item">
+            <h3>Engineering Consultant</h3>
+            <div class="company">OpsMod</div>
+            <div class="date">May 2026 - August 2026</div>
+            <ul>
+                <li>Developed custom computer vision models for live product demonstrations, including activity recognition within dynamic spatial zones</li>
+                <li>Redesigned a portable demonstration system by improving enclosure layout, thermal management, and hardware mounting</li>
+                <li>Deployed and supported technical demonstrations at customer meetings and industry conferences</li>
+                <li>Collaborated with external software developers to refine system functionality and demonstration hardware</li>
+                <li>Evaluated competing technologies and emerging industry trends at the National Restaurant Association Show</li>
+            </ul>
+        </div>
+        <div class="experience-item">
+            <h3>Engineering Intern</h3>
+            <div class="company">Inventherm/Cremjoy, Baton Rouge, LA</div>
+            <div class="date">April 2023 - May 2024</div>
+            <ul>
+                <li>Joined a small engineering team developing a commercial ice cream machine, contributing throughout the product development cycle from experimental testing to prototype manufacturing and investor demonstrations</li>
+                <li>Developed a custom Python-based data acquisition application using National Instruments hardware to automate testing and collect experimental data tailored to the team’s research needs</li>
+                <li>Conducted performance testing on ice cream machine prototypes, gathering data for evaluating the design changes and guide iterative product development</li>
+                <li>Manufactured custom prototype components using CNC and manual machining, 3D printing, and other fabrication methods</li>
+                <li>Helped build and refine the company’s second full-scale prototype by assembling mechanical systems, evaluating component revisions, troubleshooting issues, and supporting final integration</li>
+                <li>Assisted with an investor demonstration by preparing, operating, and discussing the prototype while answering technical questions about its design and development</li>
+            </ul>
+        </div>
+        <div class="experience-item">
+            <h3>Youth Climbing Coach</h3>
+            <div class="company">New Orleans Boulder Lounge, New Orleans, LA</div>
+            <div class="date">Summer 2023</div>
+            <ul>
+                <li>Coached both summer camp classes and youth teams</li>
+                <li>Helped create challenges and guided climbers in developing strategies to approach them</li>
+                <li>Applied leadership experience from tour guiding to coaching, and was able to provide different perspectives on climbing based on my dynamic climbing style and athletic background</li>
+            </ul>
+        </div>
+        <div class="experience-item">
+            <h3>Tour Guide</h3>
+            <div class="company">Arts District Bike Rental & Light Up Rides, New Orleans, LA</div>
+            <div class="date">December 2019 - January 2021</div>
+            <ul>
+                <li>Guided bike tours through the French Quarter in New Orleans while educating riders about historical structures while leading groups safely through busy streets</li>
+                <li>Improved my public speaking and customer interactions skills</li>
+                <li>Enhanced leadership by managing large tour groups efficiently</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Library Section -->
+    <section id="library" class="library">
+        <h2>Library</h2>
+        <p class="library-note">
+            Books I’ve read or am currently reading.
+        </p>
+        <ul class="library-list">
+            <li>
+                <span class="book-title">Advanced Engineering Dynamics, Second Edition</span>
+                <span class="book-author">Jerry H. Ginsberg</span>
+            </li>
+            <li>
+                <span class="book-title">An Introduction to Quantum Field Theory</span>
+                <span class="book-author">Michael E. Peskin &amp; Daniel V. Schroeder</span>
+            </li>
+            <li>
+                <span class="book-title">Black Holes: The Key to Understanding the Universe</span>
+                <span class="book-author">Brian Cox &amp; Jeff Forshaw</span>
+            </li>
+            <li>
+                <span class="book-title">Data-Driven Science and Engineering: Machine Learning, Dynamical Systems, and Control, Second Edition</span>
+                <span class="book-author">Steven L. Brunton &amp; J. Nathan Kutz</span>
+            </li>
+            <li>
+                <span class="book-title">Gravitation</span>
+                <span class="book-author">Charles W. Misner, Kip S. Thorne &amp; John Archibald Wheeler</span>
+            </li>
+            <li>
+                <span class="book-title">Quanta and Fields: The Biggest Ideas in the Universe</span>
+                <span class="book-author">Sean M. Carroll</span>
+            </li>
+            <li>
+                <span class="book-title">Spacetime and Geometry: An Introduction to General Relativity</span>
+                <span class="book-author">Sean M. Carroll</span>
+            </li>
+            <li>
+                <span class="book-title">Storm Chasing Handbook</span>
+                <span class="book-author">Tim Vasquez</span>
+            </li>
+            <li>
+                <span class="book-title">“Surely You’re Joking, Mr. Feynman!”: Adventures of a Curious Character</span>
+                <span class="book-author">Richard P. Feynman</span>
+            </li>
+            <li>
+                <span class="book-title">The Character of Physical Law</span>
+                <span class="book-author">Richard P. Feynman</span>
+            </li>
+            <li>
+                <span class="book-title">The MANIAC</span>
+                <span class="book-author">Benjamín Labatut</span>
+            </li>
+            <li>
+                <span class="book-title">The Perfectionists: How Precision Engineers Created the Modern World</span>
+                <span class="book-author">Simon Winchester</span>
+            </li>
+            <li>
+                <span class="book-title">Thermodynamic Weirdness: From Fahrenheit to Clausius</span>
+                <span class="book-author">Don S. Lemons</span>
+            </li>
+            <li>
+                <span class="book-title">Time’s Second Arrow: Evolution, Order, and a New Law of Nature</span>
+                <span class="book-author">Robert M. Hazen &amp; Michael L. Wong</span>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>How to Find Me</h2>
+        <div class="contact-content">
+            <p style="font-size: 1.2rem; margin-bottom: 1rem;">
+                <a href="mailto:gilfour.parker@gmail.com" style="color: var(--primary-color); text-decoration: none;">gilfour.parker@gmail.com</a>
+            </p>
+            <p style="font-size: 1.2rem; margin-bottom: 1rem;">
+                <a href="tel:504-300-5718" style="color: var(--primary-color); text-decoration: none;">504-300-5718</a>
+            </p>
+            <p style="font-size: 1.2rem;">
+                <a href="https://www.instagram.com/gilfour" target="_blank" rel="noopener noreferrer" style="color: var(--primary-color); text-decoration: none;">Instagram</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Engineering Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add active state to navigation on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.color = 'var(--primary-color)';
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-card, .project-card, .experience-item, .library-list li').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

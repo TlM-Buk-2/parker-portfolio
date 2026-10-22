@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ongoing Personal Projects | Parker Gilfour</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-white);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        nav a.back-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a.back-link:hover {
+            color: var(--primary-color);
+        }
+
+        .project-hero {
+            margin-top: 60px;
+            min-height: 45vh;
+            display: flex;
+            align-items: flex-end;
+            background-color: #0f172a;
+            background-image:
+                linear-gradient(to top, rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.18)),
+                url('./ongoing/hero-sim.jpg');
+            background-position: center bottom;
+            background-size: contain;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 4rem 2rem 3rem;
+        }
+
+        .project-hero-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .project-hero .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-hero h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            max-width: 16ch;
+        }
+
+        .project-hero p {
+            font-size: 1.15rem;
+            max-width: 40rem;
+            opacity: 0.95;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+
+        section {
+            margin-bottom: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+            color: var(--text-dark);
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        h3 {
+            font-size: 1.35rem;
+            margin-bottom: 1.25rem;
+            color: var(--primary-color);
+        }
+
+        details.project-group {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        details.project-group > summary {
+            list-style: none;
+            cursor: pointer;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            position: relative;
+            padding: 0.35rem 2.5rem 0.85rem 0;
+            margin-bottom: 1.25rem;
+            user-select: none;
+        }
+
+        details.project-group > summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details.project-group > summary::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        details.project-group > summary::before {
+            content: '';
+            position: absolute;
+            right: 0.35rem;
+            top: 0.85rem;
+            width: 0.65rem;
+            height: 0.65rem;
+            border-right: 2.5px solid var(--primary-color);
+            border-bottom: 2.5px solid var(--primary-color);
+            transform: rotate(45deg);
+            transition: transform 0.2s ease;
+        }
+
+        details.project-group[open] > summary::before {
+            top: 1.05rem;
+            transform: rotate(-135deg);
+        }
+
+        details.project-group > summary:hover {
+            color: var(--primary-color);
+        }
+
+        details.project-group .media-grid {
+            margin-bottom: 1rem;
+        }
+
+        .overview {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 48rem;
+        }
+
+        .overview p + p {
+            margin-top: 1rem;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .media-item {
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        }
+
+        .media-item img,
+        .media-item video {
+            display: block;
+            width: 100%;
+            height: 520px;
+            background: #111827;
+            object-fit: contain;
+        }
+
+        .media-stack {
+            background: #111827;
+        }
+
+        .media-stack > video {
+            height: 420px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .media-stack-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .media-stack-row img {
+            height: 320px;
+            width: 100%;
+            background: #111827;
+            object-fit: contain;
+        }
+
+        .media-caption {
+            padding: 0.9rem 1.1rem 1.1rem;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .media-caption strong {
+            display: block;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        @media (max-width: 640px) {
+            .media-stack-row {
+                grid-template-columns: 1fr;
+            }
+
+            .media-stack > video,
+            .media-stack-row img {
+                height: 280px;
+            }
+        }
+
+        footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer a {
+            color: #93c5fd;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .project-hero {
+                min-height: 40vh;
+                padding: 3rem 1.25rem 2rem;
+            }
+
+            main {
+                padding: 2rem 1.25rem 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a class="logo" href="../index.html">Parker Gilfour</a>
+            <a class="back-link" href="../index.html#projects">← Back to Projects</a>
+        </div>
+    </nav>
+
+    <header class="project-hero">
+        <div class="project-hero-content">
+            <p class="eyebrow">Work in Progress</p>
+            <h1>Ongoing Personal Projects</h1>
+            <p>
+                A looser look at things I’m currently tinkering with — CAD, computer vision,
+                and whatever else.
+            </p>
+        </div>
+    </header>
+
+    <main>
+        <details class="project-group">
+            <summary>Computer Vision</summary>
+            <div class="media-grid">
+                <div class="media-item wide">
+                    <video controls preload="metadata" playsinline>
+                        <source src="./ongoing/demo-2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="media-caption">
+                        <strong>Clip 1</strong>
+                        Gaining access to different cameras within an Xbox Kinect V2.
+                    </div>
+                </div>
+
+                <div class="media-item wide">
+                    <video controls preload="metadata" playsinline>
+                        <source src="./ongoing/demo-1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="media-caption">
+                        <strong>Clip 2</strong>
+                        On a road trip I began toying around with a system that uses CV to detect cars on two ONN webcams that can triangulate to the cars to find relative velocities (initially just one calibrated on lane lines). Then, use my phone's IMU to find my velocity and create a final prediction of passing by cars' velocities.
+                    </div>
+                </div>
+
+                <div class="media-item wide">
+                    <img src="./ongoing/snapshot.jpg" alt="Kinect CV combining object detection with depth perception">
+                    <div class="media-caption">
+                        <strong>Kinect CV</strong>
+                        Applying CV to Xbox Kinect V2 feed combining object detection with depth perception similar to an Oak-D-Lite for a fraction of the price (but way bigger and power hungry).
+                    </div>
+                </div>
+
+                <div class="media-item wide">
+                    <img src="./ongoing/kinect-mount.jpg" alt="Custom 3-D printed quick detach Xbox Kinect mount">
+                    <div class="media-caption">
+                        <strong>Custom 3-D Printed Quick Detach Xbox Kinect Mount</strong>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details class="project-group">
+            <summary>Simulations</summary>
+            <div class="media-grid">
+                <div class="media-item wide">
+                    <video controls preload="metadata" playsinline>
+                        <source src="./ongoing/task-joint-space.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="media-caption">
+                        <strong>Task Space and Joint Space Control Simulation</strong>
+                    </div>
+                </div>
+
+                <div class="media-item wide">
+                    <video controls preload="metadata" playsinline>
+                        <source src="./ongoing/ball-track-controls.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="media-caption">
+                        <strong>Ball-on-Track PID Controls Simulation (Godot)</strong>
+                        Built in Godot after helping debug a friend's physical controls class project. A ball rides a track pivoted at the center; a second pivot, driven by a servo through an extension rod, tilts the track while a distance sensor reports the ball's position. The sim provides variable PID gains, sensor noise, and dead zones in both position and velocity, with the goal of driving the ball back to center.
+                    </div>
+                </div>
+
+                <div class="media-item wide">
+                    <video controls preload="metadata" playsinline>
+                        <source src="./ongoing/pool-sim.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="media-caption">
+                        <strong>Pool Simulation (Godot) — with Patrick Jasper</strong>
+                        Joint project with Patrick Jasper. He built a CV system with a camera above a real pool table that detects the balls and cue, then projects an overlay showing where the shot would go. The goal is to combine that with an ML model trained in simulation to predict much more about game state from a given shot than just the cue ball's initial trajectory.
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details class="project-group">
+            <summary>Other Ongoing Work</summary>
+            <div class="media-grid">
+                <div class="media-item wide">
+                    <video controls preload="metadata" playsinline>
+                        <source src="./ongoing/teleop-demo.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="media-caption">
+                        <strong>Bilateral Teleoperation Demo</strong>
+                    </div>
+                </div>
+
+                <div class="media-item wide">
+                    <div class="media-stack">
+                        <video controls preload="metadata" playsinline>
+                            <source src="./ongoing/usb-c-power.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="media-stack-row">
+                            <img src="./ongoing/usb-c-power-device.jpg" alt="USB-C to multi-voltage barrel connector PD decoy device">
+                            <img src="./ongoing/usb-c-power-adapters.jpg" alt="PD decoys and barrel connector adapter tip sets">
+                        </div>
+                    </div>
+                    <div class="media-caption">
+                        <strong>Making Everything USB-C Powered</strong>
+                        While setting up a demonstration for a fundraising presentation, there was a moment when the power supplies for critical devices seemed to be damaged (thankfully they weren't). I realized I didn't have a great on the spot solution for this other than carrying some form of backup. I learned about PD decoys after and designed a little device to convert USB-C to 5V, 9V, 12V, 15V, and 20V barrel connector outputs, and got adapters for the fixed barrel connector to a wide range of other possible connectors.
+                    </div>
+                </div>
+
+                <div class="media-item wide">
+                    <video controls preload="metadata" playsinline>
+                        <source src="./ongoing/demo-3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="media-caption">
+                        <strong>Clip 3</strong>
+                        Variable Resistance Hand Rehabilitation Prototype for my Introduction to Robotics Class. Technically not ongoing but feels incomplete. Uses a flywheel with a star ratchet to provide intensity based loading with unloaded recovery (to not pry open a patients hand).
+                    </div>
+                </div>
+            </div>
+        </details>
+    </main>
+
+    <footer>
+        <p><a href="../index.html#projects">← Back to portfolio</a></p>
+        <p style="margin-top: 0.75rem; opacity: 0.8;">&copy; 2026 Parker Gilfour</p>
+    </footer>
+</body>
+</html>
